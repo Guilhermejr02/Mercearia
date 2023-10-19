@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models;
+
 
 namespace DAL
 {
-    internal class ProdutoDAL
+    public class ProdutoDAL
     {
+        public void Inserir(Produto _produto)
+        {
+
+        }
+        public void Alterar(Cliente _cliente)
+        {
+
+        }
+        public void Excluir(int _id)
+        {
+
+        }
+        public List<Produto> BuscarTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
