@@ -11,8 +11,18 @@ namespace DAL
             {
                 SqlConnection cn = new SqlConnection();
                 SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo) 
+                                    VALUES(@Nome, @NomeUsuario, @Senha, @Ativo)";
+                cmd.CommandType =  System.Data.CommandType.Text;
 
+                cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
+                cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
+                cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
+                cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
 
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
