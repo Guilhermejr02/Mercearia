@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Mercearia]    Script Date: 20/10/2023 08:44:28 ******/
+/****** Object:  Database [Mercearia]    Script Date: 20/10/2023 09:09:59 ******/
 CREATE DATABASE [Mercearia]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,13 +80,13 @@ ALTER DATABASE [Mercearia] SET QUERY_STORE = OFF
 GO
 USE [Mercearia]
 GO
-/****** Object:  Table [dbo].[Cliente]    Script Date: 20/10/2023 08:44:29 ******/
+/****** Object:  Table [dbo].[Cliente]    Script Date: 20/10/2023 09:09:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Cliente](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nome] [varchar](150) NULL,
 	[Fone] [varchar](15) NULL,
  CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
@@ -95,14 +95,13 @@ CREATE TABLE [dbo].[Cliente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Produto]    Script Date: 20/10/2023 08:44:29 ******/
+/****** Object:  Table [dbo].[Produto]    Script Date: 20/10/2023 09:09:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Produto]
-(
-	[Id] [int] NOT NULL,
+CREATE TABLE [dbo].[Produto](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nome] [varchar](150) NULL,
 	[Preco] [float] NULL,
 	[Estoque] [float] NULL,
@@ -112,13 +111,13 @@ CREATE TABLE [dbo].[Produto]
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuario]    Script Date: 20/10/2023 08:44:29 ******/
+/****** Object:  Table [dbo].[Usuario]    Script Date: 20/10/2023 09:09:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Usuario](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nome] [varchar](150) NULL,
 	[NomeUsuario] [varchar](150) NULL,
 	[Senha] [varchar](50) NULL,
