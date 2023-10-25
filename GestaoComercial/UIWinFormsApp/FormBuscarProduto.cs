@@ -11,14 +11,19 @@ using System.Windows.Forms;
 
 namespace UIWinFormsApp
 {
-    public partial class FormBuscarUsuario : Form
+    public partial class FormBuscarProduto : Form
     {
-        public FormBuscarUsuario()
+        public FormBuscarProduto()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void FormBuscarProduto_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
@@ -30,13 +35,13 @@ namespace UIWinFormsApp
                 switch (comboBoxBuscarPor.SelectedIndex)
                 {
                     case 0:
-                        bindingSourceUsuario.DataSource = new UsuarioBLL().BuscarPorNome(textBoxBuscarPor.Text);
+                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarPorNome(textBoxBuscarPor.Text);
                         break;
                     case 1:
-                        bindingSourceUsuario.DataSource = new UsuarioBLL().BuscarPorNomeUsuario(textBoxBuscarPor.Text);
+                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPor.Text);
                         break;
                     default:
-                        bindingSourceUsuario.DataSource = new UsuarioBLL().BuscarTodos();
+                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarTodos();
                         break;
                 }
             }
@@ -47,12 +52,7 @@ namespace UIWinFormsApp
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void dataGridViewUsuario_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
