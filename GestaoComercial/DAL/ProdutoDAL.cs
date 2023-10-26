@@ -31,7 +31,7 @@ namespace DAL
         }
         public void Alterar(Produto _produto)
         {
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -63,7 +63,7 @@ namespace DAL
         }
         public void Excluir(int _id)
         {
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -95,14 +95,13 @@ namespace DAL
 
             List<Produto> produtoLista = new List<Produto>();
             Produto produto;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT Id, Nome, Preco, Estoque, CodBarras " +
-                    "FROM PRODUTO" +
-                    "WHERE CodBarras = @CodBarras";
+                cmd.CommandText = "SELECT Id, Nome, Preco, Estoque, CodBarras FROM PRODUTO";
+              
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -130,7 +129,7 @@ namespace DAL
         {
 
             Produto produto;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -163,7 +162,7 @@ namespace DAL
         {
             List<Produto> produtoLista = new List<Produto>();
             Produto produto;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -200,7 +199,7 @@ namespace DAL
         {
             Produto produto;
 
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -239,7 +238,7 @@ namespace DAL
         {
             Produto produto;
 
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {

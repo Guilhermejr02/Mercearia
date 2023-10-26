@@ -29,6 +29,15 @@ namespace BLL
             return new ClienteDAL().BuscarPorId(_id);
         }
 
+        public Cliente BuscarPorNome(string _nomeCliente)
+        {
+            return new ClienteDAL().BuscarPorNome(_nomeCliente);
+        }
+
+        public Cliente BuscarPorFone(string _Fone)
+        {
+            return new ClienteDAL().BuscarPorFone(_Fone);
+        }
     }
 }
 

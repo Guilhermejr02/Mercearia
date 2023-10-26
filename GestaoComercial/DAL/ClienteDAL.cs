@@ -30,7 +30,7 @@ namespace DAL
         }
         public void Alterar(Cliente _cliente)
         {
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -60,7 +60,7 @@ namespace DAL
         }
         public void Excluir(int _id)
         {
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
@@ -87,103 +87,22 @@ namespace DAL
         }
         public List<Cliente> BuscarTodos()
         {
-            List<Cliente> produtoLista = new List<Cliente>();
-            Cliente cliente;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
-
-            try
-            {
-                SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT Id, Nome, Fone FROM CLIENTE";
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                cn.Open();
-                using (SqlDataReader rd = cmd.ExecuteReader())
-                {
-                    while (rd.Read())
-                    {
-                        cliente = new Cliente();
-                        cliente.Id = (int)rd["Id"];
-                        cliente.Nome = rd["Nome"].ToString();
-                        cliente.Fone = rd["Fone"].ToString();
-                        produtoLista.Add(cliente);
-                    }
-                }
-
-                return produtoLista;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar buscar um cliente no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-
-        public Cliente BuscarPorId(int _Id)
-        {
-
-            Cliente cliente;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
-
-            try
-            {
-                SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT Id, Nome, Fone FROM CLIENTE";
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                cliente = new Cliente();
-                cn.Open();
-                using (SqlDataReader rd = cmd.ExecuteReader())
-                {
-                    while (rd.Read())
-                    {
-                        cliente.Id = (int)rd["Id"];
-                        cliente.Nome = rd["Nome"].ToString();
-                        cliente.Fone = rd["Fone"].ToString();
-                    }
-                }
-
-                return cliente;
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar buscar um cliente no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-
-        public List<Cliente> BuscarPorNome(string _nome)
-        {
             List<Cliente> clienteLista = new List<Cliente>();
             Cliente cliente;
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"SELECT Id, Nome, Fone
-                                    FROM CLIENTE
-                                    WHERE Nome LIKE @Nome";
-
+                cmd.CommandText = "SELECT Id, Nome, Fone FROM CLIENTE";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue(@"Nome", "%" + _nome + "%");
 
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     while (rd.Read())
                     {
-                        cliente = new Cliente();
-                        cliente.Id = (int)rd["Id"];
-                        cliente.Nome = rd["Nome"].ToString();
-                        cliente.Fone = rd["Fone"].ToString();
+                        cliente = PreencherObjeto(rd);
                         clienteLista.Add(cliente);
                     }
                 }
@@ -192,7 +111,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar um cliente por nome no banco de dados.", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar um cliente no banco de dados.", ex);
             }
             finally
             {
@@ -200,21 +119,58 @@ namespace DAL
             }
         }
 
-        public Cliente BuscarPorNomeUsuario(string _nomeUsuario)
+        public Cliente BuscarPorId(int _id)
+        {
+
+            Cliente cliente;
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"SELECT Id, Nome, Fone
+                    FROM CLIENTE
+                   WHERE Id = @Id";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", _id);
+
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    cliente = new Cliente();
+                    while (rd.Read())
+                    {
+                        cliente = PreencherObjeto(rd);
+                    }
+                }
+                return cliente;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um cliente por id no banco de dados.", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public Cliente BuscarPorNome(string _nome)
         {
             Cliente cliente;
 
-            SqlConnection cn = new SqlConnection(Constantes.StringDeConexao);
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = @"SELECT  Id, Nome, Fone
                                     FROM CLIENTE 
-                                    WHERE NomeUsuario = @NomeUsuario";
+                                    WHERE Nome LIKE @Nome";
                 cmd.CommandType = System.Data.CommandType.Text;
-
-                cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
+                cmd.Parameters.AddWithValue("@Nome", "%" + _nome + "%");
 
 
                 cn.Open();
@@ -224,13 +180,11 @@ namespace DAL
                     cliente = new Cliente();
                     while (rd.Read())
                     {
-                        cliente.Id = (int)rd["Id"];
-                        cliente.Nome = rd["Nome"].ToString();
-                        cliente.Fone = rd["Fone"].ToString();
+                        cliente = PreencherObjeto(rd);
                     }
                 }
-
                 return cliente;
+
             }
             catch (Exception ex)
             {
@@ -241,5 +195,55 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public Cliente BuscarPorFone(string _fone)
+        {
+            Cliente cliente;
+
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"SELECT  Id, Nome, Fone
+                                    FROM CLIENTE 
+                                    WHERE Fone LIKE @Fone";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@Fone", "%" + _fone + "%");
+
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    cliente = new Cliente();
+                    while (rd.Read())
+                    {
+                        cliente = PreencherObjeto(rd);
+                    }
+                }
+                return cliente;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um telefone de cliente no banco de dados.", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        private static Cliente PreencherObjeto(SqlDataReader _rd)
+        {
+            Cliente cliente = new Cliente();
+            cliente.Id = (int)_rd["Id"];
+            cliente.Nome = _rd["Nome"].ToString();
+            cliente.Fone = _rd["Fone"].ToString();
+            return cliente;
+        }
+
     }
 }
