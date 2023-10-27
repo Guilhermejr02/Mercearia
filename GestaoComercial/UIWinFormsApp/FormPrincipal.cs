@@ -30,5 +30,10 @@
                 frm.ShowDialog();
             }
         }
+
+        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

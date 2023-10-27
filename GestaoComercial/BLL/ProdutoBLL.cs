@@ -32,7 +32,6 @@ namespace BLL
         {
             return new ProdutoDAL().BuscarPorCodBarras(_codBarras);
         }
-
         public List<Produto> BuscarPorNome(string _nomeProduto)
         {
             return new ProdutoDAL().BuscarPorNome(_nomeProduto);
