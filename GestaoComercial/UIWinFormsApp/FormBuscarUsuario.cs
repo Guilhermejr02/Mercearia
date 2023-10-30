@@ -19,11 +19,6 @@ namespace UIWinFormsApp
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -43,25 +38,13 @@ namespace UIWinFormsApp
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonInserir_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(((Usuario)bindingSourceUsuario.Current));
-            using (FormCadastrarUsuario frm = new FormCadastrarUsuario(id))
+            using (FormCadastrarUsuario frm = new FormCadastrarUsuario())
             {
                 frm.ShowDialog();
             }
@@ -69,23 +52,27 @@ namespace UIWinFormsApp
 
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja realmente excluir este registr?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (MessageBox.Show("Deseja realmente excluir este registr?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-
+                int id = ((Usuario)bindingSourceUsuario.Current).Id;
+                new UsuarioBLL().Excluir(id);
+                bindingSourceUsuario.RemoveCurrent();
+                MessageBox.Show("Registro excluido com sucesso!");
             }
-            int id = Convert.ToInt32(((Usuario)bindingSourceUsuario.Current));
-            new UsuarioBLL().Excluir(id);
-            bindingSourceUsuario.RemoveCurrent();
-            MessageBox.Show("Registro excluido com sucesso!");
         }
 
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(((Usuario)bindingSourceUsuario.Current));
+            int id = ((Usuario)bindingSourceUsuario.Current).Id;
             using (FormCadastrarUsuario frm = new FormCadastrarUsuario(id))
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void buttonSalvar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

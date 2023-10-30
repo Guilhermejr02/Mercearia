@@ -13,8 +13,8 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO Cliente(Id, Nome, Fone) 
-                                    VALUES(@Id, @Nome, @Fone)"))
+                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO CLIENTE(Nome, Fone) 
+                                    VALUES(@Nome, @Fone)"))
                 {
                     try
                     {
@@ -40,10 +40,8 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
 
-                        }
-                        transaction.Rollback();
+                            transaction.Rollback();
                         throw new Exception("Ocrreu um erro ao tentar inserir o cliente no Banco de dados.");
                     }
                 }
@@ -54,13 +52,11 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"UPDATE CLIENTE(Id, Nome, Fone) 
-                                 VALUES(@Id, @Nome, @Fone);
-                                 WHERE Id = @Id"))
+                using (SqlCommand cmd = new SqlCommand(@"UPDATE CLIENTE SET Nome = @Nome, Fone = @Fone     
+                                                         WHERE Id = @Id"))
                 {
                     try
                     {
-
                         cmd.CommandType = System.Data.CommandType.Text;
 
                         cmd.Parameters.AddWithValue("@Id", _cliente.Id);
@@ -100,10 +96,8 @@ namespace DAL
                 using (SqlCommand cmd = new SqlCommand(@"DELETE FROM CLIENTE                          
                                     WHERE Id = @Id"))
                 {
-
-
                     try
-                    {         
+                    {
                         cmd.CommandType = System.Data.CommandType.Text;
 
                         cmd.Parameters.AddWithValue("@Id", _id);
@@ -177,31 +171,25 @@ namespace DAL
             {
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = @"SELECT Id, Nome, Fone
-                    FROM CLIENTE
-                   WHERE Id = @Id";
+                                    FROM CLIENTE
+                                    WHERE Id = @Id";
+
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id", _id);
-
+                cliente = new Cliente();
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    cliente = new Cliente();
-                    while (rd.Read())
+                    if (rd.Read())
                     {
                         cliente = PreencherObjeto(rd);
                     }
                 }
                 return cliente;
-
-
             }
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um cliente por id no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
             }
         }
 

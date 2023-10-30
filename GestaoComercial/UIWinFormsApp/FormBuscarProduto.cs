@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,13 +36,13 @@ namespace UIWinFormsApp
                 switch (comboBoxBuscarPor.SelectedIndex)
                 {
                     case 0:
-                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarPorNome(textBoxBuscarPor.Text);
+                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorNome(textBoxBuscarPor.Text);
                         break;
                     case 1:
-                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPor.Text);
+                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPor.Text);
                         break;
                     default:
-                        bindingSourceUsuario.DataSource = new ProdutoBLL().BuscarTodos();
+                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarTodos();
                         break;
                 }
             }
@@ -53,6 +54,39 @@ namespace UIWinFormsApp
         }
 
         private void dataGridViewUsuario_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+            int id = ((Produto)produtoBindingSource.Current).Id;
+            using (FormCadastrarProduto frm = new FormCadastrarProduto(id))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonInserir_Click(object sender, EventArgs e)
+        {
+            using (FormCadastrarProduto frm = new FormCadastrarProduto())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente excluir este registr?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id = ((Produto)produtoBindingSource.Current).Id;
+                new ProdutoBLL().Excluir(id);
+                produtoBindingSource.RemoveCurrent();
+                MessageBox.Show("Registro excluido com sucesso!");
+            }
+        }
+
+        private void produtoBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }

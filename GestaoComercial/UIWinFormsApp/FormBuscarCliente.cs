@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace UIWinFormsApp
         public FormBuscarCliente()
         {
             InitializeComponent();
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -56,6 +58,39 @@ namespace UIWinFormsApp
         }
 
         private void FormBuscarCliente_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+            int id = ((Cliente)clienteBindingSource.Current).Id;
+            using (FormCadastrarCliente frm = new FormCadastrarCliente(id))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonInserir_Click(object sender, EventArgs e)
+        {
+            using (FormCadastrarCliente frm = new FormCadastrarCliente())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente excluir este registr?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id = ((Cliente)clienteBindingSource.Current).Id;
+                new ClienteBLL().Excluir(id);
+                clienteBindingSource.RemoveCurrent();
+                MessageBox.Show("Registro excluido com sucesso!");
+            }
+        }
+
+        private void buttonSalvar_Click(object sender, EventArgs e)
         {
 
         }

@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridViewUsuario = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceUsuario = new System.Windows.Forms.BindingSource(this.components);
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -46,31 +44,29 @@
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscarPor = new System.Windows.Forms.TextBox();
             this.comboBoxBuscarPor = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUsuario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewUsuario
+            // dataGridViewCliente
             // 
-            this.dataGridViewUsuario.AllowUserToAddRows = false;
-            this.dataGridViewUsuario.AllowUserToDeleteRows = false;
-            this.dataGridViewUsuario.AllowUserToOrderColumns = true;
-            this.dataGridViewUsuario.AutoGenerateColumns = false;
-            this.dataGridViewUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCliente.AllowUserToAddRows = false;
+            this.dataGridViewCliente.AllowUserToDeleteRows = false;
+            this.dataGridViewCliente.AllowUserToOrderColumns = true;
+            this.dataGridViewCliente.AutoGenerateColumns = false;
+            this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nomeDataGridViewTextBoxColumn,
             this.Fone});
-            this.dataGridViewUsuario.DataSource = this.clienteBindingSource;
-            this.dataGridViewUsuario.Location = new System.Drawing.Point(12, 121);
-            this.dataGridViewUsuario.Name = "dataGridViewUsuario";
-            this.dataGridViewUsuario.ReadOnly = true;
-            this.dataGridViewUsuario.RowHeadersWidth = 51;
-            this.dataGridViewUsuario.RowTemplate.Height = 29;
-            this.dataGridViewUsuario.Size = new System.Drawing.Size(881, 282);
-            this.dataGridViewUsuario.TabIndex = 25;
+            this.dataGridViewCliente.DataSource = this.clienteBindingSource;
+            this.dataGridViewCliente.Location = new System.Drawing.Point(12, 121);
+            this.dataGridViewCliente.Name = "dataGridViewCliente";
+            this.dataGridViewCliente.ReadOnly = true;
+            this.dataGridViewCliente.RowHeadersWidth = 51;
+            this.dataGridViewCliente.RowTemplate.Height = 29;
+            this.dataGridViewCliente.Size = new System.Drawing.Size(881, 282);
+            this.dataGridViewCliente.TabIndex = 25;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -103,14 +99,6 @@
             // 
             this.clienteBindingSource.DataSource = typeof(Models.Cliente);
             this.clienteBindingSource.CurrentChanged += new System.EventHandler(this.clienteBindingSource_CurrentChanged);
-            // 
-            // bindingSourceUsuario
-            // 
-            this.bindingSourceUsuario.DataSource = typeof(Models.Produto);
-            // 
-            // produtoBindingSource
-            // 
-            this.produtoBindingSource.DataSource = typeof(Models.Produto);
             // 
             // label2
             // 
@@ -150,6 +138,7 @@
             this.buttonSalvar.TabIndex = 18;
             this.buttonSalvar.Text = "&Salvar";
             this.buttonSalvar.UseVisualStyleBackColor = true;
+            this.buttonSalvar.Click += new System.EventHandler(this.buttonSalvar_Click);
             // 
             // buttonExcluir
             // 
@@ -159,6 +148,7 @@
             this.buttonExcluir.TabIndex = 19;
             this.buttonExcluir.Text = "E&xcluir";
             this.buttonExcluir.UseVisualStyleBackColor = true;
+            this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
             // buttonInserir
             // 
@@ -168,6 +158,7 @@
             this.buttonInserir.TabIndex = 20;
             this.buttonInserir.Text = "&Inserir";
             this.buttonInserir.UseVisualStyleBackColor = true;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // buttonAlterar
             // 
@@ -177,6 +168,7 @@
             this.buttonAlterar.TabIndex = 21;
             this.buttonAlterar.Text = "&Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
+            this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonBuscar
             // 
@@ -213,7 +205,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1299, 432);
-            this.Controls.Add(this.dataGridViewUsuario);
+            this.Controls.Add(this.dataGridViewCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCancelar);
@@ -227,10 +219,8 @@
             this.Name = "FormBuscarCliente";
             this.Text = "FormBuscarCliente";
             this.Load += new System.EventHandler(this.FormBuscarCliente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUsuario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,9 +228,7 @@
 
         #endregion
 
-        private DataGridView dataGridViewUsuario;
-        private BindingSource bindingSourceUsuario;
-        private BindingSource produtoBindingSource;
+        private DataGridView dataGridViewCliente;
         private Label label2;
         private Label label1;
         private Button buttonCancelar;

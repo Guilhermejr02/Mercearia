@@ -13,51 +13,8 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO Produto(Nome, Preco, Estoque) 
-                                    VALUES(@Nome, @Preco, @Estoque)"))
-                {
-                    try
-                    {
-                        cmd.CommandType = System.Data.CommandType.Text;
-
-                        cmd.Parameters.AddWithValue("@Id", _produto.Id);
-                        cmd.Parameters.AddWithValue("@Nome", _produto.Nome);
-                        cmd.Parameters.AddWithValue("@Preco", _produto.Preco);
-                        cmd.Parameters.AddWithValue("@Estoque", _produto.Estoque);
-
-                        if (_transaction == null)
-                        {
-                            cn.Open();
-                            transaction = cn.BeginTransaction();
-                        }
-                        cmd.Transaction = transaction;
-                        cmd.Connection = transaction.Connection;
-
-                        cmd.ExecuteNonQuery();
-
-                        if (_transaction == null)
-                            transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
-
-                        }
-                        transaction.Rollback();
-                        throw new Exception("Ocrreu um erro ao tentar inserir o produto no Banco de dados.");
-                    }
-                }
-            }
-        }
-        public void Alterar(Produto _produto, SqlTransaction _transaction = null)
-        {
-            SqlTransaction transaction = _transaction;
-            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
-            {
-                using (SqlCommand cmd = new SqlCommand(@"UPDATE PRODUTO(Nome, Preco, Estoque, CodBarras) 
-                                 VALUES(@Nome, @Preco, @Estoque, @CodBarras);
-                                 WHERE Id = @Id"))
+                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO Produto(Nome, Preco, Estoque, CodBarras) 
+                                    VALUES(@Nome, @Preco, @Estoque, @CodBarras)"))
                 {
                     try
                     {
@@ -85,10 +42,49 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
 
+                            transaction.Rollback();
+                        throw new Exception("Ocrreu um erro ao tentar inserir o produto no Banco de dados.");
+                    }
+                }
+            }
+        }
+        public void Alterar(Produto _produto, SqlTransaction _transaction = null)
+        {
+            SqlTransaction transaction = _transaction;
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
+            {
+                using (SqlCommand cmd = new SqlCommand(@"UPDATE PRODUTO SET Nome = @Nome, Preco = @Preco, Estoque = @Estoque, CodBarras = @CodBarras)
+                                                        WHERE Id = @Id"))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+
+                        cmd.Parameters.AddWithValue("@Id", _produto.Id);
+                        cmd.Parameters.AddWithValue("@Nome", _produto.Nome);
+                        cmd.Parameters.AddWithValue("@Preco", _produto.Preco);
+                        cmd.Parameters.AddWithValue("@Estoque", _produto.Estoque);
+                        cmd.Parameters.AddWithValue("@CodBarras", _produto.CodBarras);
+
+                        if (_transaction == null)
+                        {
+                            cn.Open();
+                            transaction = cn.BeginTransaction();
                         }
-                        transaction.Rollback();
+                        cmd.Transaction = transaction;
+                        cmd.Connection = transaction.Connection;
+
+                        cmd.ExecuteNonQuery();
+
+                        if (_transaction == null)
+                            transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
+
+                            transaction.Rollback();
                         throw new Exception("Ocorreu um erro ao tentar alterar um produto no banco de dados.", ex);
                     }
                 }
@@ -103,7 +99,7 @@ namespace DAL
                                     WHERE Id = @Id"))
                 {
                     try
-                    { 
+                    {
                         cmd.CommandType = System.Data.CommandType.Text;
 
                         cmd.Parameters.AddWithValue("@Id", _id);
@@ -125,10 +121,8 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
 
-                        }
-                        transaction.Rollback();
+                            transaction.Rollback();
                         throw new Exception("Ocorreu um erro ao tentar inserir um produto no banco de dados.", ex);
                     }
                 }
@@ -178,14 +172,17 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT Id, Nome, Preco, Estoque FROM PRODUTO";
-                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = @"SELECT Id, Nome, Preco, Estoque, CodBarras
+                                    FROM PRODUTO
+                                    WHERE Id = @Id";
 
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", _Id);
                 produto = new Produto();
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    while (rd.Read())
+                    if (rd.Read())
                     {
                         produto = PreencherObjeto(rd);
                     }
@@ -196,10 +193,6 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um produto no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
             }
         }
         public List<Produto> BuscarPorNome(string _nome)

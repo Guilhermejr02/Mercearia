@@ -33,7 +33,7 @@
             this.bindingSourceCadastro = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxNomeDeUsuario = new System.Windows.Forms.TextBox();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
-            this.textBoxConfiguracaoDeSenha = new System.Windows.Forms.TextBox();
+            this.textBoxConfirmacaoDeSenha = new System.Windows.Forms.TextBox();
             this.Nome = new System.Windows.Forms.Label();
             this.Senha = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -75,12 +75,12 @@
             this.textBoxSenha.TabIndex = 0;
             this.textBoxSenha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBoxConfiguracaoDeSenha
+            // textBoxConfirmacaoDeSenha
             // 
-            this.textBoxConfiguracaoDeSenha.Location = new System.Drawing.Point(216, 209);
-            this.textBoxConfiguracaoDeSenha.Name = "textBoxConfiguracaoDeSenha";
-            this.textBoxConfiguracaoDeSenha.Size = new System.Drawing.Size(366, 27);
-            this.textBoxConfiguracaoDeSenha.TabIndex = 0;
+            this.textBoxConfirmacaoDeSenha.Location = new System.Drawing.Point(216, 209);
+            this.textBoxConfirmacaoDeSenha.Name = "textBoxConfirmacaoDeSenha";
+            this.textBoxConfirmacaoDeSenha.Size = new System.Drawing.Size(366, 27);
+            this.textBoxConfirmacaoDeSenha.TabIndex = 0;
             // 
             // Nome
             // 
@@ -115,9 +115,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(216, 186);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 20);
+            this.label4.Size = new System.Drawing.Size(157, 20);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Configuração de senha";
+            this.label4.Text = "Confirmação de senha";
             // 
             // checkBoxAtivo
             // 
@@ -148,6 +148,7 @@
             this.buttonCancelar.TabIndex = 3;
             this.buttonCancelar.Text = "&Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // label2
             // 
@@ -173,7 +174,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Senha);
             this.Controls.Add(this.Nome);
-            this.Controls.Add(this.textBoxConfiguracaoDeSenha);
+            this.Controls.Add(this.textBoxConfirmacaoDeSenha);
             this.Controls.Add(this.textBoxSenha);
             this.Controls.Add(this.textBoxNomeDeUsuario);
             this.Controls.Add(this.textBoxNome);
@@ -190,7 +191,7 @@
         private TextBox textBoxNome;
         private TextBox textBoxNomeDeUsuario;
         private TextBox textBoxSenha;
-        private TextBox textBoxConfiguracaoDeSenha;
+        private TextBox textBoxConfirmacaoDeSenha;
         private Label Nome;
         private Label Senha;
         private Label label3;

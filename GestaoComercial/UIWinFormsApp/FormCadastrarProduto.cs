@@ -1,11 +1,12 @@
 ﻿using BLL;
 using Models;
+
 namespace UIWinFormsApp
 {
-    public partial class FormCadastrarUsuario : Form
+    public partial class FormCadastrarProduto : Form
     {
-        private int id;
-        public FormCadastrarUsuario(int _id = 0)
+        int id;
+        public FormCadastrarProduto(int _id = 0)
         {
             InitializeComponent();
             id = _id;
@@ -13,17 +14,7 @@ namespace UIWinFormsApp
             if (id == 0)
                 bindingSourceCadastro.AddNew();
             else
-                bindingSourceCadastro.DataSource = new UsuarioBLL().BuscarPorId(id);    
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+                bindingSourceCadastro.DataSource = new ProdutoBLL().BuscarPorId(id);
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
@@ -31,12 +22,12 @@ namespace UIWinFormsApp
             try
             {
                 bindingSourceCadastro.EndEdit();
-                Usuario usuario = (Usuario)bindingSourceCadastro.Current;
+                Produto produto = (Produto)bindingSourceCadastro.Current;
                 if (id == 0)
-                    new UsuarioBLL().Inserir(usuario);
+                    new ProdutoBLL().Inserir(produto);
 
                 else
-                    new UsuarioBLL().Alterar(usuario);
+                    new ProdutoBLL().Alterar(produto);
                 MessageBox.Show("Registro salvo com sucesso!");
                 this.Close();
             }
@@ -47,6 +38,11 @@ namespace UIWinFormsApp
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Senha_Click(object sender, EventArgs e)
         {
 
         }

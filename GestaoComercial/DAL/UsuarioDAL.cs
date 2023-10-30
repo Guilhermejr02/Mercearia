@@ -11,7 +11,7 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo) 
+                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO USUARIO(Nome, NomeUsuario, Senha, Ativo) 
                       VALUES(@Nome, @NomeUsuario, @Senha, @Ativo)"))
                 {
                     try
@@ -40,10 +40,8 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
 
-                        }
-                        transaction.Rollback();
+                            transaction.Rollback();
                         throw new Exception("Ocrreu um erro ao tentar inserir o usuario no Banco de dados.");
                     }
                 }
@@ -54,14 +52,12 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"UPDATE USUARIO(Nome, NomeUsuario, Senha, Ativo) 
-                                 VALUES(@Nome, @NomeUsuario, @Senha, @Ativo);
+                using (SqlCommand cmd = new SqlCommand(@"UPDATE USUARIO SET Nome = @Nome, NomeUsuario = @NomeUsuario, Senha = @Senha, Ativo = @Ativo
                                  WHERE Id = @Id"))
                 {
                     try
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
-
 
                         cmd.Parameters.AddWithValue("@Id", _usuario.Id);
                         cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
@@ -85,10 +81,8 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
+                            transaction.Rollback();
 
-                        }
-                        transaction.Rollback();
                         throw new Exception("Ocrreu um erro ao tentar alterar o usuario no Banco de dados.");
                     }
                 }
@@ -161,10 +155,6 @@ namespace DAL
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um usuario no banco de dados.", ex);
             }
-            finally
-            {
-                cn.Close();
-            }
         }
 
         public Usuario BuscarPorId(int _Id)
@@ -176,29 +166,25 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Senha, Ativo FROM USUARIO";
+                cmd.CommandText = @"SELECT Id, Nome, NomeUsuario, Senha, Ativo 
+                                    FROM USUARIO
+                                    WHERE Id = @Id";
                 cmd.CommandType = System.Data.CommandType.Text;
-
+                cmd.Parameters.AddWithValue("@Id", _Id);
                 usuario = new Usuario();
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    while (rd.Read())
+                    if (rd.Read())
                     {
                         usuario = PreecherObjeto(rd);
-
                     }
                 }
-
                 return usuario;
             }
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um usuario no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
             }
         }
 

@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridViewUsuario = new System.Windows.Forms.DataGridView();
+            this.dataGridViewProduto = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceUsuario = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
@@ -45,31 +44,30 @@
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscarPor = new System.Windows.Forms.TextBox();
             this.comboBoxBuscarPor = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUsuario)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewUsuario
+            // dataGridViewProduto
             // 
-            this.dataGridViewUsuario.AllowUserToAddRows = false;
-            this.dataGridViewUsuario.AllowUserToDeleteRows = false;
-            this.dataGridViewUsuario.AllowUserToOrderColumns = true;
-            this.dataGridViewUsuario.AutoGenerateColumns = false;
-            this.dataGridViewUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewProduto.AllowUserToAddRows = false;
+            this.dataGridViewProduto.AllowUserToDeleteRows = false;
+            this.dataGridViewProduto.AllowUserToOrderColumns = true;
+            this.dataGridViewProduto.AutoGenerateColumns = false;
+            this.dataGridViewProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nomeDataGridViewTextBoxColumn,
             this.CodBarras});
-            this.dataGridViewUsuario.DataSource = this.bindingSourceUsuario;
-            this.dataGridViewUsuario.Location = new System.Drawing.Point(12, 194);
-            this.dataGridViewUsuario.Name = "dataGridViewUsuario";
-            this.dataGridViewUsuario.ReadOnly = true;
-            this.dataGridViewUsuario.RowHeadersWidth = 51;
-            this.dataGridViewUsuario.RowTemplate.Height = 29;
-            this.dataGridViewUsuario.Size = new System.Drawing.Size(881, 282);
-            this.dataGridViewUsuario.TabIndex = 14;
-            this.dataGridViewUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuario_CellContentClick);
+            this.dataGridViewProduto.DataSource = this.produtoBindingSource;
+            this.dataGridViewProduto.Location = new System.Drawing.Point(12, 194);
+            this.dataGridViewProduto.Name = "dataGridViewProduto";
+            this.dataGridViewProduto.ReadOnly = true;
+            this.dataGridViewProduto.RowHeadersWidth = 51;
+            this.dataGridViewProduto.RowTemplate.Height = 29;
+            this.dataGridViewProduto.Size = new System.Drawing.Size(881, 282);
+            this.dataGridViewProduto.TabIndex = 14;
+            this.dataGridViewProduto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuario_CellContentClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -101,10 +99,7 @@
             // produtoBindingSource
             // 
             this.produtoBindingSource.DataSource = typeof(Models.Produto);
-            // 
-            // bindingSourceUsuario
-            // 
-            this.bindingSourceUsuario.DataSource = typeof(Models.Produto);
+            this.produtoBindingSource.CurrentChanged += new System.EventHandler(this.produtoBindingSource_CurrentChanged);
             // 
             // label2
             // 
@@ -152,6 +147,7 @@
             this.buttonExcluir.TabIndex = 8;
             this.buttonExcluir.Text = "E&xcluir";
             this.buttonExcluir.UseVisualStyleBackColor = true;
+            this.buttonExcluir.Click += new System.EventHandler(this.buttonExcluir_Click);
             // 
             // buttonInserir
             // 
@@ -161,6 +157,7 @@
             this.buttonInserir.TabIndex = 9;
             this.buttonInserir.Text = "&Inserir";
             this.buttonInserir.UseVisualStyleBackColor = true;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // buttonAlterar
             // 
@@ -170,6 +167,7 @@
             this.buttonAlterar.TabIndex = 10;
             this.buttonAlterar.Text = "&Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
+            this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonBuscar
             // 
@@ -205,7 +203,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1372, 515);
-            this.Controls.Add(this.dataGridViewUsuario);
+            this.Controls.Add(this.dataGridViewProduto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCancelar);
@@ -219,9 +217,8 @@
             this.Name = "FormBuscarProduto";
             this.Text = "FormBuscarProduto";
             this.Load += new System.EventHandler(this.FormBuscarProduto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,11 +226,10 @@
 
         #endregion
 
-        private DataGridView dataGridViewUsuario;
+        private DataGridView dataGridViewProduto;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn CodBarras;
-        private BindingSource bindingSourceUsuario;
         private Label label2;
         private Label label1;
         private Button buttonCancelar;
