@@ -65,7 +65,7 @@
             this.dataGridViewCliente.ReadOnly = true;
             this.dataGridViewCliente.RowHeadersWidth = 51;
             this.dataGridViewCliente.RowTemplate.Height = 29;
-            this.dataGridViewCliente.Size = new System.Drawing.Size(881, 282);
+            this.dataGridViewCliente.Size = new System.Drawing.Size(901, 282);
             this.dataGridViewCliente.TabIndex = 25;
             // 
             // idDataGridViewTextBoxColumn
@@ -98,7 +98,6 @@
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataSource = typeof(Models.Cliente);
-            this.clienteBindingSource.CurrentChanged += new System.EventHandler(this.clienteBindingSource_CurrentChanged);
             // 
             // label2
             // 
@@ -106,11 +105,10 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1299, 56);
+            this.label2.Size = new System.Drawing.Size(925, 56);
             this.label2.TabIndex = 23;
             this.label2.Text = "Buscar Cliente";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -123,7 +121,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(1199, 374);
+            this.buttonCancelar.Location = new System.Drawing.Point(819, 409);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(94, 29);
             this.buttonCancelar.TabIndex = 17;
@@ -132,17 +130,16 @@
             // 
             // buttonSalvar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(1099, 374);
+            this.buttonSalvar.Location = new System.Drawing.Point(719, 409);
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(94, 29);
             this.buttonSalvar.TabIndex = 18;
             this.buttonSalvar.Text = "&Salvar";
             this.buttonSalvar.UseVisualStyleBackColor = true;
-            this.buttonSalvar.Click += new System.EventHandler(this.buttonSalvar_Click);
             // 
             // buttonExcluir
             // 
-            this.buttonExcluir.Location = new System.Drawing.Point(1199, 85);
+            this.buttonExcluir.Location = new System.Drawing.Point(819, 86);
             this.buttonExcluir.Name = "buttonExcluir";
             this.buttonExcluir.Size = new System.Drawing.Size(94, 29);
             this.buttonExcluir.TabIndex = 19;
@@ -152,7 +149,7 @@
             // 
             // buttonInserir
             // 
-            this.buttonInserir.Location = new System.Drawing.Point(1099, 85);
+            this.buttonInserir.Location = new System.Drawing.Point(719, 85);
             this.buttonInserir.Name = "buttonInserir";
             this.buttonInserir.Size = new System.Drawing.Size(94, 29);
             this.buttonInserir.TabIndex = 20;
@@ -162,7 +159,7 @@
             // 
             // buttonAlterar
             // 
-            this.buttonAlterar.Location = new System.Drawing.Point(999, 83);
+            this.buttonAlterar.Location = new System.Drawing.Point(619, 86);
             this.buttonAlterar.Name = "buttonAlterar";
             this.buttonAlterar.Size = new System.Drawing.Size(94, 29);
             this.buttonAlterar.TabIndex = 21;
@@ -172,7 +169,7 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(899, 84);
+            this.buttonBuscar.Location = new System.Drawing.Point(519, 86);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(94, 29);
             this.buttonBuscar.TabIndex = 22;
@@ -184,11 +181,12 @@
             // 
             this.textBoxBuscarPor.Location = new System.Drawing.Point(171, 86);
             this.textBoxBuscarPor.Name = "textBoxBuscarPor";
-            this.textBoxBuscarPor.Size = new System.Drawing.Size(722, 27);
+            this.textBoxBuscarPor.Size = new System.Drawing.Size(342, 27);
             this.textBoxBuscarPor.TabIndex = 16;
             // 
             // comboBoxBuscarPor
             // 
+            this.comboBoxBuscarPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBuscarPor.FormattingEnabled = true;
             this.comboBoxBuscarPor.Items.AddRange(new object[] {
             "Id",
@@ -204,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 432);
+            this.ClientSize = new System.Drawing.Size(925, 442);
             this.Controls.Add(this.dataGridViewCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

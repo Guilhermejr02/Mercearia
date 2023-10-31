@@ -20,11 +20,6 @@ namespace UIWinFormsApp
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -52,14 +47,10 @@ namespace UIWinFormsApp
             }
         }
 
-        private void clienteBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormBuscarCliente_Load(object sender, EventArgs e)
         {
-
+            comboBoxBuscarPor.SelectedIndex = comboBoxBuscarPor.Items.Count - 1;
+            buttonBuscar_Click(sender, e);
         }
 
         private void buttonAlterar_Click(object sender, EventArgs e)
@@ -90,9 +81,5 @@ namespace UIWinFormsApp
             }
         }
 
-        private void buttonSalvar_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

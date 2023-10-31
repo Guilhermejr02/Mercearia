@@ -21,7 +21,8 @@ namespace UIWinFormsApp
 
         private void FormBuscarProduto_Load(object sender, EventArgs e)
         {
-
+            comboBoxBuscarPor.SelectedIndex = comboBoxBuscarPor.Items.Count - 1;
+            buttonBuscar_Click(sender, e);
         }
 
         private void label2_Click(object sender, EventArgs e)

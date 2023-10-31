@@ -31,9 +31,22 @@
             }
         }
 
-        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
 
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            using (FormLogin frm = new FormLogin())
+            {
+                frm.ShowDialog();
+                if (!frm.Autenticou)
+                    this.Close();            
+            }
         }
     }
 }

@@ -1,15 +1,5 @@
 ﻿using BLL;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace UIWinFormsApp
 {
     public partial class FormBuscarUsuario : Form
@@ -70,9 +60,11 @@ namespace UIWinFormsApp
             }
         }
 
-        private void buttonSalvar_Click(object sender, EventArgs e)
-        {
 
+        private void FormBuscarUsuario_Load(object sender, EventArgs e)
+        {
+            comboBoxBuscarPor.SelectedIndex = comboBoxBuscarPor.Items.Count - 1;   
+            buttonBuscar_Click(sender,e);
         }
     }
 }

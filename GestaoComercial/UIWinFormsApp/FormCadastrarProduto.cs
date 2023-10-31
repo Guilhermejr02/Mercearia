@@ -37,14 +37,5 @@ namespace UIWinFormsApp
             }
         }
 
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Senha_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -50,9 +50,8 @@
             this.textBoxNome.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCadastro, "Nome", true));
             this.textBoxNome.Location = new System.Drawing.Point(10, 146);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(572, 27);
+            this.textBoxNome.Size = new System.Drawing.Size(377, 27);
             this.textBoxNome.TabIndex = 0;
-            this.textBoxNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // bindingSourceCadastro
             // 
@@ -61,9 +60,9 @@
             // textBoxNomeDeUsuario
             // 
             this.textBoxNomeDeUsuario.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCadastro, "NomeUsuario", true));
-            this.textBoxNomeDeUsuario.Location = new System.Drawing.Point(588, 146);
+            this.textBoxNomeDeUsuario.Location = new System.Drawing.Point(393, 146);
             this.textBoxNomeDeUsuario.Name = "textBoxNomeDeUsuario";
-            this.textBoxNomeDeUsuario.Size = new System.Drawing.Size(459, 27);
+            this.textBoxNomeDeUsuario.Size = new System.Drawing.Size(123, 27);
             this.textBoxNomeDeUsuario.TabIndex = 0;
             // 
             // textBoxSenha
@@ -73,13 +72,12 @@
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.Size = new System.Drawing.Size(200, 27);
             this.textBoxSenha.TabIndex = 0;
-            this.textBoxSenha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBoxConfirmacaoDeSenha
             // 
             this.textBoxConfirmacaoDeSenha.Location = new System.Drawing.Point(216, 209);
             this.textBoxConfirmacaoDeSenha.Name = "textBoxConfirmacaoDeSenha";
-            this.textBoxConfirmacaoDeSenha.Size = new System.Drawing.Size(366, 27);
+            this.textBoxConfirmacaoDeSenha.Size = new System.Drawing.Size(372, 27);
             this.textBoxConfirmacaoDeSenha.TabIndex = 0;
             // 
             // Nome
@@ -90,7 +88,6 @@
             this.Nome.Size = new System.Drawing.Size(50, 20);
             this.Nome.TabIndex = 1;
             this.Nome.Text = "Nome";
-            this.Nome.Click += new System.EventHandler(this.label1_Click);
             // 
             // Senha
             // 
@@ -104,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(588, 123);
+            this.label3.Location = new System.Drawing.Point(393, 123);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 20);
             this.label3.TabIndex = 1;
@@ -123,7 +120,7 @@
             // 
             this.checkBoxAtivo.AutoSize = true;
             this.checkBoxAtivo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceCadastro, "Ativo", true));
-            this.checkBoxAtivo.Location = new System.Drawing.Point(595, 213);
+            this.checkBoxAtivo.Location = new System.Drawing.Point(522, 146);
             this.checkBoxAtivo.Name = "checkBoxAtivo";
             this.checkBoxAtivo.Size = new System.Drawing.Size(66, 24);
             this.checkBoxAtivo.TabIndex = 2;
@@ -132,7 +129,7 @@
             // 
             // buttonSalvar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(853, 284);
+            this.buttonSalvar.Location = new System.Drawing.Point(394, 284);
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(94, 29);
             this.buttonSalvar.TabIndex = 3;
@@ -142,13 +139,12 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(953, 284);
+            this.buttonCancelar.Location = new System.Drawing.Point(494, 284);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(94, 29);
             this.buttonCancelar.TabIndex = 3;
             this.buttonCancelar.Text = "&Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
-            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // label2
             // 
@@ -156,7 +152,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1061, 56);
+            this.label2.Size = new System.Drawing.Size(595, 56);
             this.label2.TabIndex = 24;
             this.label2.Text = "Cadastrar Usuário";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -165,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 325);
+            this.ClientSize = new System.Drawing.Size(595, 325);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonSalvar);
@@ -179,6 +175,7 @@
             this.Controls.Add(this.textBoxNomeDeUsuario);
             this.Controls.Add(this.textBoxNome);
             this.Name = "FormCadastrarUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCadastrarUsuario";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCadastro)).EndInit();
             this.ResumeLayout(false);

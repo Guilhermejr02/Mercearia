@@ -54,7 +54,7 @@ namespace DAL
             SqlTransaction transaction = _transaction;
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand(@"UPDATE PRODUTO SET Nome = @Nome, Preco = @Preco, Estoque = @Estoque, CodBarras = @CodBarras)
+                using (SqlCommand cmd = new SqlCommand(@"UPDATE PRODUTO SET Nome = @Nome, Preco = @Preco, Estoque = @Estoque, CodBarras = @CodBarras
                                                         WHERE Id = @Id"))
                 {
                     try
@@ -243,10 +243,10 @@ namespace DAL
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = @"SELECT Id, Nome, Preco, Estoque, CodBarras
                                     FROM PRODUTO 
-                                    WHERE CodBarras = @CodBarras";
+                                    WHERE CodBarras LIKE @CodBarras";
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@CodBarras", _codBarras);
+                cmd.Parameters.AddWithValue(@"CodBarras", "%" + _codBarras + "%");
 
 
                 cn.Open();

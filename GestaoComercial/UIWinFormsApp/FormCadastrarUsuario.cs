@@ -15,17 +15,6 @@ namespace UIWinFormsApp
             else
                 bindingSourceCadastro.DataSource = new UsuarioBLL().BuscarPorId(id);    
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -33,10 +22,9 @@ namespace UIWinFormsApp
                 bindingSourceCadastro.EndEdit();
                 Usuario usuario = (Usuario)bindingSourceCadastro.Current;
                 if (id == 0)
-                    new UsuarioBLL().Inserir(usuario);
-
+                    new UsuarioBLL().Inserir(usuario, textBoxConfirmacaoDeSenha.Text);
                 else
-                    new UsuarioBLL().Alterar(usuario);
+                    new UsuarioBLL().Alterar(usuario, textBoxConfirmacaoDeSenha.Text);
                 MessageBox.Show("Registro salvo com sucesso!");
                 this.Close();
             }
@@ -44,11 +32,6 @@ namespace UIWinFormsApp
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

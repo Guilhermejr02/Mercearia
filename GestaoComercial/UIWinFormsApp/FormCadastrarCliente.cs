@@ -16,17 +16,6 @@ namespace UIWinFormsApp
             else
                 BindingSourceCadastro.DataSource = new ClienteBLL().BuscarPorId(id);
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxNome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -45,11 +34,6 @@ namespace UIWinFormsApp
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void clienteBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
