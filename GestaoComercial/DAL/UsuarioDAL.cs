@@ -42,7 +42,7 @@ namespace DAL
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
 
                             transaction.Rollback();
-                        throw new Exception("Ocrreu um erro ao tentar inserir o usuario no Banco de dados.");
+                        throw new Exception("Ocrreu um erro ao tentar inserir o usuario no Banco de dados.", ex);
                     }
                 }
             }
@@ -83,7 +83,7 @@ namespace DAL
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
                             transaction.Rollback();
 
-                        throw new Exception("Ocrreu um erro ao tentar alterar o usuario no Banco de dados.");
+                        throw new Exception("Ocrreu um erro ao tentar alterar o usuario no Banco de dados.", ex);
                     }
                 }
             }
@@ -118,11 +118,10 @@ namespace DAL
                     catch (Exception ex)
                     {
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
-                        {
+                            transaction.Rollback();
 
-                        }
-                        transaction.Rollback();
-                        throw new Exception("Ocrreu um erro ao tentar excluir o usuario no Banco de dados.");
+                            throw new Exception("Ocrreu um erro ao tentar excluir o usuario no Banco de dados.", ex);
+                        
                     }
                 }
             }
@@ -220,10 +219,6 @@ namespace DAL
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um usuario por nome no banco de dados.", ex);
             }
-            finally
-            {
-                cn.Close();
-            }
         }
 
         public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
@@ -259,10 +254,6 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um nome de usuario no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
             }
         }
 

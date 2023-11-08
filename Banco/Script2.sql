@@ -1,4 +1,4 @@
-USE [master]
+USE [Mercearia]
 GO
 /****** Object:  Database [Mercearia]    Script Date: 20/10/2023 09:09:59 ******/
 CREATE DATABASE [Mercearia]
@@ -128,7 +128,7 @@ CREATE TABLE [dbo].[Usuario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-USE [master]
+USE [Mercearia]
 GO
 ALTER DATABASE [Mercearia] SET  READ_WRITE 
 GO

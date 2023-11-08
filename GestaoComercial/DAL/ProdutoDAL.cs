@@ -44,7 +44,7 @@ namespace DAL
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
 
                             transaction.Rollback();
-                        throw new Exception("Ocrreu um erro ao tentar inserir o produto no Banco de dados.");
+                        throw new Exception("Ocrreu um erro ao tentar inserir o produto no Banco de dados.", ex);
                     }
                 }
             }
@@ -157,10 +157,6 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um produto no banco de dados.", ex);
-            }
-            finally
-            {
-                cn.Close();
             }
         }
         public Produto BuscarPorId(int _Id)
