@@ -105,6 +105,7 @@ CREATE TABLE [dbo].[Produto](
 	[Nome] [varchar](150) NULL,
 	[Preco] [float] NULL,
 	[Estoque] [float] NULL,
+	[CodBarras] [varchar](50) NULL,
  CONSTRAINT [PK_Produto] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
