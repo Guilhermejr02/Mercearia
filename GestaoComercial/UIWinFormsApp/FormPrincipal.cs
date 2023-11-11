@@ -45,7 +45,7 @@
             {
                 frm.ShowDialog();
                 if (!frm.Autenticou)
-                    this.Close();            
+                    this.Close();
             }
         }
     }

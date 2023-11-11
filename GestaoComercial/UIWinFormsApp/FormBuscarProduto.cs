@@ -40,7 +40,7 @@ namespace UIWinFormsApp
                         produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorNome(textBoxBuscarPor.Text);
                         break;
                     case 1:
-                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPor.Text);
+                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPorCodBarras.Text);
                         break;
                     default:
                         produtoBindingSource.DataSource = new ProdutoBLL().BuscarTodos();

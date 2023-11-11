@@ -123,7 +123,7 @@ namespace DAL
                         if (transaction.Connection != null && transaction.Connection.State == ConnectionState.Open)
 
                             transaction.Rollback();
-                        throw new Exception("Ocorreu um erro ao tentar inserir um produto no banco de dados.", ex);
+                        throw new Exception("Ocorreu um erro ao tentar excluir um produto no banco de dados.", ex);
                     }
                 }
             }
@@ -139,7 +139,6 @@ namespace DAL
             {
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "SELECT Id, Nome, Preco, Estoque, CodBarras FROM PRODUTO";
-
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -161,7 +160,6 @@ namespace DAL
         }
         public Produto BuscarPorId(int _Id)
         {
-
             Produto produto;
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
@@ -188,7 +186,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar um produto no banco de dados.", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar um produto por id no banco de dados.", ex);
             }
         }
         public List<Produto> BuscarPorNome(string _nome)

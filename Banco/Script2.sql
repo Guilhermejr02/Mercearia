@@ -1,7 +1,7 @@
+CREATE DATABASE [Mercearia]
 USE [Mercearia]
 GO
 /****** Object:  Database [Mercearia]    Script Date: 20/10/2023 09:09:59 ******/
-CREATE DATABASE [Mercearia]
  CONTAINMENT = NONE
  ON  PRIMARY 
 ( NAME = N'Mercearia', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS2019\MSSQL\DATA\Mercearia.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
