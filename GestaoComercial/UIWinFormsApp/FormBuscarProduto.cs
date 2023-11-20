@@ -40,7 +40,7 @@ namespace UIWinFormsApp
                         produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorNome(textBoxBuscarPor.Text);
                         break;
                     case 1:
-                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPorCodBarras.Text);
+                        produtoBindingSource.DataSource = new ProdutoBLL().BuscarPorCodBarras(textBoxBuscarPor.Text);
                         break;
                     default:
                         produtoBindingSource.DataSource = new ProdutoBLL().BuscarTodos();
@@ -52,11 +52,6 @@ namespace UIWinFormsApp
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void dataGridViewUsuario_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void buttonAlterar_Click(object sender, EventArgs e)

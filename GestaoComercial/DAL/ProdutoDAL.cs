@@ -258,7 +258,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar um codbarras de produto no banco de dados.", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar um código de barras de produto no banco de dados.", ex);
             }
             finally
             {
